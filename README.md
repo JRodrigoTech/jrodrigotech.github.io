@@ -1,4 +1,4 @@
-\# Development and testing repository for \[jrodrigo.com](https://www.jrodrigo.com/).
+# Development and testing repository for [jrodrigo.com](https://www.jrodrigo.com/).
 
 
 
@@ -6,21 +6,21 @@ This repository is used to experiment with static pages, frontend structure, lay
 
 
 
-\## Purpose
+## Purpose
 
 
 
-\- Test new frontend ideas
+- Test new frontend ideas
 
-\- Validate static site structure
+- Validate static site structure
 
-\- Experiment with layouts and content
+- Experiment with layouts and content
 
-\- Preview deployment through GitHub Pages
+- Preview deployment through GitHub Pages
 
 
 
-\## Status
+## Status
 
 
 
@@ -28,9 +28,9 @@ Tests in progress...
 
 
 
-\## Author
+## Author
 
 
 
-\*\*J.Rodrigo\*\* @jrodrigotech \[www.jrodrigo.com](https://www.jrodrigo.com/)
+**J.Rodrigo** @jrodrigotech [www.jrodrigo.com](https://www.jrodrigo.com/)
 
