@@ -1,4 +1,38 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Electronics Prototype Workflow</title><meta name="description" content="Practical checklist for repeatable prototype test sessions."><link rel="canonical" href="https://jrodrigo.com/wiki/electronics-workflow/"><meta property="og:type" content="website"><meta property="og:title" content="Electronics Prototype Workflow"><meta property="og:description" content="Practical checklist for repeatable prototype test sessions."><meta property="og:site_name" content="J. Rodrigo"><meta property="og:image" content="/og/default-og.png"><link rel="stylesheet" href="/includes/BaseLayout.DZImlYyR.css"></head> <body> <canvas id="c"></canvas> <header class="site-header"><nav class="nav container" aria-label="Main navigation"><a class="logo" href="/"><b>// </b>jrodrigo</a><ul class="nav-links"><li><a href="/">// home</a></li><li><a href="/projects">// projects</a></li><li><a href="/notes">// notes</a></li><li><a href="/wiki">// wiki</a></li><li><a href="/about">// about</a></li><li><a href="/contact">// contact</a></li></ul><div class="nav-r"><div class="pulse"></div><span>ONLINE</span></div></nav></header> <main>  <article class="container stack">  <h1>Electronics Prototype Workflow</h1> <p class="meta">Section: hardware · Updated Feb 28, 2026</p> <ul class="tag-list" aria-label="Tags"><li>electronics</li><li>testing</li><li>process</li></ul> <article class="prose">  <h2 id="session-structure">Session structure</h2>
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Electronics Prototype Workflow</title><meta name="description" content="Practical checklist for repeatable prototype test sessions."><link rel="canonical" href="https://jrodrigo.com/wiki/electronics-workflow/"><meta property="og:type" content="website"><meta property="og:title" content="Electronics Prototype Workflow"><meta property="og:description" content="Practical checklist for repeatable prototype test sessions."><meta property="og:site_name" content="J. Rodrigo"><meta property="og:image" content="/og/default-og.png"><link rel="stylesheet" href="/includes/BaseLayout.TcaNvRTU.css"></head> <body> <canvas id="c"></canvas> <header class="site-header"> <nav class="nav container" aria-label="Main navigation"> <a class="logo" href="/"><b>// </b>jrodrigo</a> <ul class="nav-links"> <li><a href="/">// home</a></li><li><a href="/projects">// projects</a></li><li><a href="/notes">// notes</a></li><li><a href="/wiki">// wiki</a></li><li><a href="/about">// about</a></li><li><a href="/contact">// contact</a></li> </ul> <div class="nav-r" aria-hidden="true"> <div class="pulse"></div> <span>ONLINE</span> </div> <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation menu"> <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span> <span>MENU</span> </button> </nav> <div id="mobile-nav" class="mobile-nav" hidden> <ul> <li><a href="/">// home</a></li><li><a href="/projects">// projects</a></li><li><a href="/notes">// notes</a></li><li><a href="/wiki">// wiki</a></li><li><a href="/about">// about</a></li><li><a href="/contact">// contact</a></li> </ul> </div> <script>
+    const header = document.currentScript?.closest('.site-header');
+    const toggle = header?.querySelector('.nav-toggle');
+    const menu = header?.querySelector('#mobile-nav');
+    if (toggle && menu) {
+      const closeMenu = () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation menu');
+        menu.hidden = true;
+        header.removeAttribute('data-menu-open');
+      };
+      const openMenu = () => {
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'Close navigation menu');
+        menu.hidden = false;
+        header.setAttribute('data-menu-open', 'true');
+      };
+      toggle.addEventListener('click', () => {
+        toggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+      });
+      menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+      });
+      document.addEventListener('pointerdown', (event) => {
+        if (toggle.getAttribute('aria-expanded') !== 'true') return;
+        const target = event.target;
+        if (!(target instanceof Node)) return;
+        if (!header.contains(target)) closeMenu();
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 750) closeMenu();
+      });
+    }
+  </script> </header> <main>  <article class="container stack">  <h1>Electronics Prototype Workflow</h1> <p class="meta">Section: hardware · Updated Feb 28, 2026</p> <ul class="tag-list" aria-label="Tags"><li>electronics</li><li>testing</li><li>process</li></ul> <article class="prose">  <h2 id="session-structure">Session structure</h2>
 <ul>
 <li>Define one objective for the session.</li>
 <li>Capture measurements in a fixed template.</li>
