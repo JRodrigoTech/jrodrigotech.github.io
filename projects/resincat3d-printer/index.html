@@ -1,1 +1,40 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ResinCat 3D Printer</title><meta name="description" content="My involvement in ResinCat, an open-source resin stereolithography 3D printer developed by a Barcelona maker group."><link rel="canonical" href="https://jrodrigo.com/projects/resincat3d-printer/"><link rel="stylesheet" href="/includes/BaseLayout.TcaNvRTU.css"></head><body><header class="site-header"><nav class="nav container"><a class="logo" href="/"><b>// </b>jrodrigo</a><ul class="nav-links"><li><a href="/">// home</a></li><li><a href="/projects">// projects</a></li><li><a href="/notes">// notes</a></li><li><a href="/wiki">// wiki</a></li><li><a href="/about">// about</a></li><li><a href="/contact">// contact</a></li></ul></nav></header><main><article class="container stack"><h1>ResinCat 3D Printer</h1><p class="meta">Status: archived · Published Mar 1, 2014</p><ul class="tag-list"><li>3d printing</li><li>resin</li><li>open hardware</li><li>reprap</li><li>community project</li></ul><article class="prose"><p>ResinCat was a community project around building an open-source resin stereolithography 3D printer. It came from a very maker-style place: a group of people trying to understand, build, document, and improve a machine that was still quite exotic compared with the usual filament printers of that time.</p><p>My involvement was multidisciplinary, which is usually where I feel most comfortable. There were electronics, firmware, mechanical design, CAD, documentation, testing, and all the small practical problems that appear when a machine is moving from idea to real hardware.</p><p>What I remember as valuable from this project is the combination of open hardware and real fabrication constraints. A resin printer is not just a Z axis and a UV source.</p><p>ResinCat is archived now, but it still belongs in my timeline. It represents that early period where open-source hardware, local maker communities, and digital fabrication were all mixing together.</p></article></article></main></body></html>
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ResinCat 3D Printer</title><meta name="description" content="My involvement in ResinCat, an open-source resin stereolithography 3D printer developed by a Barcelona maker group."><link rel="canonical" href="https://jrodrigo.com/projects/resincat3d-printer/"><meta property="og:type" content="website"><meta property="og:title" content="ResinCat 3D Printer"><meta property="og:description" content="My involvement in ResinCat, an open-source resin stereolithography 3D printer developed by a Barcelona maker group."><meta property="og:site_name" content="J. Rodrigo"><meta property="og:image" content="/og/default-og.png"><link rel="stylesheet" href="/includes/BaseLayout.TcaNvRTU.css"></head> <body> <canvas id="c"></canvas> <header class="site-header"> <nav class="nav container" aria-label="Main navigation"> <a class="logo" href="/"><b>// </b>jrodrigo</a> <ul class="nav-links"> <li><a href="/">// home</a></li><li><a href="/projects">// projects</a></li><li><a href="/notes">// notes</a></li><li><a href="/wiki">// wiki</a></li><li><a href="/about">// about</a></li><li><a href="/contact">// contact</a></li> </ul> <div class="nav-r" aria-hidden="true"> <div class="pulse"></div> <span>ONLINE</span> </div> <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation menu"> <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span> <span>MENU</span> </button> </nav> <div id="mobile-nav" class="mobile-nav" hidden> <ul> <li><a href="/">// home</a></li><li><a href="/projects">// projects</a></li><li><a href="/notes">// notes</a></li><li><a href="/wiki">// wiki</a></li><li><a href="/about">// about</a></li><li><a href="/contact">// contact</a></li> </ul> </div> <script>
+    const header = document.currentScript?.closest('.site-header');
+    const toggle = header?.querySelector('.nav-toggle');
+    const menu = header?.querySelector('#mobile-nav');
+    if (toggle && menu) {
+      const closeMenu = () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation menu');
+        menu.hidden = true;
+        header.removeAttribute('data-menu-open');
+      };
+      const openMenu = () => {
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'Close navigation menu');
+        menu.hidden = false;
+        header.setAttribute('data-menu-open', 'true');
+      };
+      toggle.addEventListener('click', () => {
+        toggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+      });
+      menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+      });
+      document.addEventListener('pointerdown', (event) => {
+        if (toggle.getAttribute('aria-expanded') !== 'true') return;
+        const target = event.target;
+        if (!(target instanceof Node)) return;
+        if (!header.contains(target)) closeMenu();
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 750) closeMenu();
+      });
+    }
+  </script> </header> <main>  <article class="container stack">  <h1>ResinCat 3D Printer</h1> <p class="meta">Status: archived · Published Mar 1, 2014 </p> <ul class="tag-list" aria-label="Tags"><li>3d printing</li><li>resin</li><li>open hardware</li><li>reprap</li><li>community project</li></ul> <article class="prose">   <p>ResinCat was a community project around building an open-source resin stereolithography 3D printer. It came from a very maker-style place: a group of people trying to understand, build, document, and improve a machine that was still quite exotic compared with the usual filament printers of that time.</p>
+<p>My involvement was multidisciplinary, which is usually where I feel most comfortable. There were electronics, firmware, mechanical design, CAD, documentation, testing, and all the small practical problems that appear when a machine is moving from idea to real hardware.</p>
+<p>What I remember as valuable from this project is the combination of open hardware and real fabrication constraints. A resin printer is not just a Z axis and a UV source. You have to think about rigidity, calibration, resin handling, exposure, mechanical repeatability, electronics, and the fact that documentation needs to be good enough for someone else to reproduce the work.</p>
+<p>ResinCat is archived now, but it still belongs in my timeline. It represents that early period where open-source hardware, local maker communities, and digital fabrication were all mixing together in a very hands-on way.</p>   </article>  </article>  </main> <footer class="site-footer"><div class="fi container"><span class="fc">© 2026 <span>J. Rodrigo</span> · Built with Astro</span><div class="fr"><a href="/contact" class="fl">Contact</a><span class="fsep">::</span><a class="fl" href="https://github.com/JRodrigoTech">GitHub</a></div></div></footer> <script>
+const cv=document.getElementById('c'),cx=cv?.getContext('2d');let W,H,pts=[];function rsz(){if(!cv||!cx)return;W=cv.width=innerWidth;H=cv.height=innerHeight;pts=[];const S=30,cols=Math.ceil(W/S)+1,rows=Math.ceil(H/S)+1;for(let x=0;x<cols;x++)for(let y=0;y<rows;y++)if(Math.random()<.28)pts.push({x:x*S,y:y*S,a:Math.random()*Math.PI*2,s:.004+Math.random()*.009});}function draw(){if(!cx)return;cx.clearRect(0,0,W,H);for(const p of pts){p.a+=p.s;const al=(Math.sin(p.a)+1)/2;cx.beginPath();cx.arc(p.x,p.y,1,0,Math.PI*2);cx.fillStyle=`rgba(0,200,255,${al*.35})`;cx.fill();}requestAnimationFrame(draw);}addEventListener('resize',rsz);rsz();draw();
+</script> </body> </html>

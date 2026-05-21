@@ -1,1 +1,40 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Mobility Shield - Open-Hardware Robotics Platform</title><meta name="description" content="My open-hardware robotics platform with browser-based tools for generating custom 3D-printable parts."><link rel="canonical" href="https://jrodrigo.com/projects/mobilityshield/"><link rel="stylesheet" href="/includes/BaseLayout.TcaNvRTU.css"></head><body><header class="site-header"><nav class="nav container"><a class="logo" href="/"><b>// </b>jrodrigo</a><ul class="nav-links"><li><a href="/">// home</a></li><li><a href="/projects">// projects</a></li><li><a href="/notes">// notes</a></li><li><a href="/wiki">// wiki</a></li><li><a href="/about">// about</a></li><li><a href="/contact">// contact</a></li></ul></nav></header><main><article class="container stack"><h1>Mobility Shield - Open-Hardware Robotics Platform</h1><p class="meta">Status: archived · Published May 21, 2014</p><ul class="tag-list"><li>robotics</li><li>open hardware</li><li>3d printing</li><li>parametric design</li><li>web tool</li></ul><article class="prose"><p>Mobility Shield was one of my early open-hardware robotics projects. The idea was simple: instead of publishing a fixed set of robot parts, I wanted to make a system where the parts could adapt to the builder.</p><p>That led to MS Builder, a browser-based tool for generating custom STL files from parametric designs. You could adjust dimensions, generate the part, and print it.</p><p>The project mixed robotics, 3D printing, web tooling, and mechanical design. It also taught me a lot about documentation, compatibility, naming, examples, and making sure people can actually understand what they are downloading.</p><p>Mobility Shield is archived now, but I still see it as an important project in my timeline.</p></article></article></main></body></html>
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Mobility Shield - Open-Hardware Robotics Platform</title><meta name="description" content="My open-hardware robotics platform with browser-based tools for generating custom 3D-printable parts."><link rel="canonical" href="https://jrodrigo.com/projects/mobilityshield/"><meta property="og:type" content="website"><meta property="og:title" content="Mobility Shield - Open-Hardware Robotics Platform"><meta property="og:description" content="My open-hardware robotics platform with browser-based tools for generating custom 3D-printable parts."><meta property="og:site_name" content="J. Rodrigo"><meta property="og:image" content="/og/default-og.png"><link rel="stylesheet" href="/includes/BaseLayout.TcaNvRTU.css"></head> <body> <canvas id="c"></canvas> <header class="site-header"> <nav class="nav container" aria-label="Main navigation"> <a class="logo" href="/"><b>// </b>jrodrigo</a> <ul class="nav-links"> <li><a href="/">// home</a></li><li><a href="/projects">// projects</a></li><li><a href="/notes">// notes</a></li><li><a href="/wiki">// wiki</a></li><li><a href="/about">// about</a></li><li><a href="/contact">// contact</a></li> </ul> <div class="nav-r" aria-hidden="true"> <div class="pulse"></div> <span>ONLINE</span> </div> <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation menu"> <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span> <span>MENU</span> </button> </nav> <div id="mobile-nav" class="mobile-nav" hidden> <ul> <li><a href="/">// home</a></li><li><a href="/projects">// projects</a></li><li><a href="/notes">// notes</a></li><li><a href="/wiki">// wiki</a></li><li><a href="/about">// about</a></li><li><a href="/contact">// contact</a></li> </ul> </div> <script>
+    const header = document.currentScript?.closest('.site-header');
+    const toggle = header?.querySelector('.nav-toggle');
+    const menu = header?.querySelector('#mobile-nav');
+    if (toggle && menu) {
+      const closeMenu = () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation menu');
+        menu.hidden = true;
+        header.removeAttribute('data-menu-open');
+      };
+      const openMenu = () => {
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'Close navigation menu');
+        menu.hidden = false;
+        header.setAttribute('data-menu-open', 'true');
+      };
+      toggle.addEventListener('click', () => {
+        toggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+      });
+      menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+      });
+      document.addEventListener('pointerdown', (event) => {
+        if (toggle.getAttribute('aria-expanded') !== 'true') return;
+        const target = event.target;
+        if (!(target instanceof Node)) return;
+        if (!header.contains(target)) closeMenu();
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 750) closeMenu();
+      });
+    }
+  </script> </header> <main>  <article class="container stack">  <h1>Mobility Shield - Open-Hardware Robotics Platform</h1> <p class="meta">Status: archived · Published May 21, 2014 </p> <ul class="tag-list" aria-label="Tags"><li>robotics</li><li>open hardware</li><li>3d printing</li><li>parametric design</li><li>web tool</li></ul> <article class="prose">   <p>Mobility Shield was one of my early open-hardware robotics projects. The idea was simple: instead of publishing a fixed set of robot parts, I wanted to make a system where the parts could adapt to the builder.</p>
+<p>That led to MS Builder, a browser-based tool for generating custom STL files from parametric designs. You could adjust dimensions, generate the part, and print it. At the time, that felt like a very natural direction for open hardware: not just sharing files, but sharing a small design system.</p>
+<p>The project mixed robotics, 3D printing, web tooling, and mechanical design. It also taught me a lot about the less glamorous side of open projects: documentation, compatibility, naming, examples, and making sure people can actually understand what they are downloading.</p>
+<p>Mobility Shield is archived now, but I still see it as an important project in my timeline. It represents a period where I was exploring how software could make physical prototyping more flexible, especially for small robotics builds and custom mechanical parts.</p>   </article>  </article>  </main> <footer class="site-footer"><div class="fi container"><span class="fc">© 2026 <span>J. Rodrigo</span> · Built with Astro</span><div class="fr"><a href="/contact" class="fl">Contact</a><span class="fsep">::</span><a class="fl" href="https://github.com/JRodrigoTech">GitHub</a></div></div></footer> <script>
+const cv=document.getElementById('c'),cx=cv?.getContext('2d');let W,H,pts=[];function rsz(){if(!cv||!cx)return;W=cv.width=innerWidth;H=cv.height=innerHeight;pts=[];const S=30,cols=Math.ceil(W/S)+1,rows=Math.ceil(H/S)+1;for(let x=0;x<cols;x++)for(let y=0;y<rows;y++)if(Math.random()<.28)pts.push({x:x*S,y:y*S,a:Math.random()*Math.PI*2,s:.004+Math.random()*.009});}function draw(){if(!cx)return;cx.clearRect(0,0,W,H);for(const p of pts){p.a+=p.s;const al=(Math.sin(p.a)+1)/2;cx.beginPath();cx.arc(p.x,p.y,1,0,Math.PI*2);cx.fillStyle=`rgba(0,200,255,${al*.35})`;cx.fill();}requestAnimationFrame(draw);}addEventListener('resize',rsz);rsz();draw();
+</script> </body> </html>
